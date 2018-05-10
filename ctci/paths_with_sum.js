@@ -28,6 +28,9 @@ let countPaths = function (node, sum, inclusive) {
 let countPaths2 = function (root, sum, inclusive) {
   let stack = [{node: root, sums: [root.value]}];
   var count = 0;
+  if (root.value === sum) {
+    count += 1;
+  }
 
   while (stack.length > 0 ) {
     let {node, sums} = stack.pop();
@@ -45,7 +48,7 @@ let countPaths2 = function (root, sum, inclusive) {
       if (child.value === sum) {
         count += 1;
       }
-      stack.push({node: child, sums});
+      stack.push({node: child, sums: nextSums});
     });
   }
 
@@ -92,3 +95,4 @@ let root = treeify([
 ]);
 
 console.log(countPaths(root, 5));
+console.log(countPaths2(root, 5));
